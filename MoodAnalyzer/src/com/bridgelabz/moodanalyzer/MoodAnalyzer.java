@@ -10,7 +10,7 @@ public class MoodAnalyzer
         this.message = message;
     }
     
-//---------------------------------------- UC-2 -------------------------------------------
+//---------------------------------------- UC-3 -------------------------------------------
     
 	/*
 	 * @desc:Analyses the message and accordingly returns happy or sad mood
@@ -19,18 +19,17 @@ public class MoodAnalyzer
 	 * 
 	 * @returns:Happy or Sad after analysing
 	 */
-    public String analyseMood() 
-    {
-    	try {
-            // Check if the message is null
+    public String analyseMood() throws MoodAnalysisException {
+        try {
+            // Check if the message is null or empty
             if (message == null || message.trim().isEmpty()) {
-                // Treat null mood as "Happy"
-                return "Happy";
+                // Throw MoodAnalysisException with MOOD_NULL_OR_EMPTY error
+                throw new MoodAnalysisException(MoodAnalysisError.MOOD_NULL_OR_EMPTY);
             }
 
             // Basic criteria for determining mood
-            String[] happyKeywords = {"happy"};
-            String[] sadKeywords = {"sad"};
+            String[] happyKeywords = {"happy", "joy", "good", "positive"};
+            String[] sadKeywords = {"sad", "unhappy", "bad", "negative"};
 
             // Convert the message to lowercase for case-insensitive matching
             String lowerMessage = this.message.toLowerCase();
@@ -49,10 +48,9 @@ public class MoodAnalyzer
             }
         } catch (Exception e) {
             // Handle other exceptions here if needed
-            return "Undetermined";
+            throw new MoodAnalysisException(MoodAnalysisError.OTHER_ERROR, e.getMessage());
         }
     }
-    
     
 	/*
 	 * @desc:This method checks if given message contains certain keywords or not
