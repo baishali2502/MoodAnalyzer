@@ -1,8 +1,8 @@
 package com.bridgelabz.moodanalyzer;
 import java.util.*;
 
-public class Main {
-
+public class Main 
+{
 	public static void main(String[] args) 
 	{
 		try {
@@ -14,4 +14,5 @@ public class Main {
             System.err.println("Error: " + e.getError().getMessage());
         }
 	}
+	
 }
