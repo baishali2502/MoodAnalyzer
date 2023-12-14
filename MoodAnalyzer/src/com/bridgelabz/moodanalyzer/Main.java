@@ -5,15 +5,15 @@ public class Main {
 
 	public static void main(String[] args) 
 	{
-		Scanner scanner = new Scanner(System.in);
-		String message = scanner.nextLine();
-		//creating object of MoodAnalyzer class
-        MoodAnalyzer moodAnalyser = new MoodAnalyzer(message);
-        
-        String result = moodAnalyser.analyseMood();
-        
-        System.out.println(result);  // Output: Happy or Sad
-
+		// Example usage:
+        try {
+            // Example with null message treated as "Happy"
+            MoodAnalyzer moodAnalyser = new MoodAnalyzer(null);
+            String result = moodAnalyser.analyseMood();
+            System.out.println(result);  // Output: Happy
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
 	}
 
 }

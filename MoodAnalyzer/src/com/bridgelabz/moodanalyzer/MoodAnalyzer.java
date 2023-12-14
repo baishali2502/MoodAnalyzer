@@ -10,7 +10,7 @@ public class MoodAnalyzer
         this.message = message;
     }
     
-//---------------------------------------- UC-1 -------------------------------------------
+//---------------------------------------- UC-2 -------------------------------------------
     
 	/*
 	 * @desc:Analyses the message and accordingly returns happy or sad mood
@@ -21,23 +21,34 @@ public class MoodAnalyzer
 	 */
     public String analyseMood() 
     {
-        // Basic criteria for determining mood
-        String[] happyKeywords = {"happy", "any"};
-        String[] sadKeywords = {"sad"};
+    	try {
+            // Check if the message is null
+            if (message == null || message.trim().isEmpty()) {
+                // Treat null mood as "Happy"
+                return "Happy";
+            }
 
-        // Convert the message to lowercase for case-insensitive matching
-        String lowerMessage = this.message.toLowerCase();
+            // Basic criteria for determining mood
+            String[] happyKeywords = {"happy"};
+            String[] sadKeywords = {"sad"};
 
-        // Check for happy keywords
-        if (containsKeyword(lowerMessage, happyKeywords)) {
-            return "Happy";
-        }
-        // Check for sad keywords
-        else if (containsKeyword(lowerMessage, sadKeywords)) {
-            return "Sad";
-        }
-        // If no keywords match, return undetermined mood
-        else {
+            // Convert the message to lowercase for case-insensitive matching
+            String lowerMessage = this.message.toLowerCase();
+
+            // Check for happy keywords
+            if (containsKeyword(lowerMessage, happyKeywords)) {
+                return "Happy";
+            }
+            // Check for sad keywords
+            else if (containsKeyword(lowerMessage, sadKeywords)) {
+                return "Sad";
+            }
+            // If no keywords match, return undetermined mood
+            else {
+                return "Undetermined";
+            }
+        } catch (Exception e) {
+            // Handle other exceptions here if needed
             return "Undetermined";
         }
     }
