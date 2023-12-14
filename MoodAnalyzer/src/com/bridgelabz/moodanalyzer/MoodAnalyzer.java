@@ -28,8 +28,8 @@ public class MoodAnalyzer
             }
 
             // Basic criteria for determining mood
-            String[] happyKeywords = {"happy", "joy", "good", "positive"};
-            String[] sadKeywords = {"sad", "unhappy", "bad", "negative"};
+            String[] happyKeywords = {"happy"};
+            String[] sadKeywords = {"sad"};
 
             // Convert the message to lowercase for case-insensitive matching
             String lowerMessage = this.message.toLowerCase();
